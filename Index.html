@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Graphic Skills Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0d0d0d;
+      --white: #fafaf8;
+      --cream: #f4f1eb;
+      --accent: #e8470a;
+      --accent2: #1a56f0;
+      --accent3: #f0c31a;
+      --muted: #6b6b6b;
+      --border: #e0ddd5;
+      --card-bg: #ffffff;
+      --nav-h: 68px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* ───────────── NAV ───────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 6vw;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo span {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .nav-logo span::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 10px;
+      height: 10px;
+      background: var(--accent3);
+      border-radius: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: var(--white);
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 6vw;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 99;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* ───────────── PAGES ───────────── */
+    .page {
+      display: none;
+      padding-top: var(--nav-h);
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ───────────── HOMEPAGE ───────────── */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 5rem 6vw;
+      gap: 4rem;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 71, 10, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.9rem;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent3);
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 71, 10, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--ink);
+      background: var(--cream);
+    }
+
+    .hero-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-card:nth-child(1) {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .hero-card:nth-child(3) {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .hero-card:nth-child(5) {
+      background: var(--accent2);
+      color: var(--white);
+      grid-column: 1 / -1;
+    }
+
+    .hero-card .hc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-card p {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    .hero-card:nth-child(5) {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-card:nth-child(5) .hc-icon {
+      font-size: 2.4rem;
+      margin-bottom: 0;
+    }
+
+    /* ───────────── SECTION COMMON ───────────── */
+    section {
+      padding: 5rem 6vw;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ───────────── ABOUT ───────────── */
+    .about-section {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-box {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+    }
+
+    .stat-box .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-box p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .about-img-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .about-pill {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .about-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ───────────── SKILLS GRID ───────────── */
+    .skills-section {
+      background: var(--white);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--skill-color, var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      border-color: var(--skill-color, var(--accent));
+    }
+
+    .skill-card .sc-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-card p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .skill-card .sc-arrow {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .skill-card:hover .sc-arrow {
+      transform: translate(2px, -2px);
+      color: var(--skill-color, var(--accent));
+    }
+
+    /* ───────────── FEATURED VIDEOS ───────────── */
+    .featured-section {
+      background: var(--cream);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09);
+    }
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-info {
+      padding: 1.1rem 1.2rem;
+    }
+
+    .video-tag {
+      display: inline-block;
+      background: var(--cream);
+      padding: 0.2rem 0.7rem;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .video-info h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .video-info p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .featured-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    /* ───────────── TUTORIALS PAGE ───────────── */
+    .tutorials-hero {
+      background: var(--ink);
+      color: var(--white);
+      padding: 4rem 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tutorials-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232, 71, 10, 0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .tutorials-hero .section-label {
+      color: var(--accent3);
+    }
+
+    .tutorials-hero .section-title {
+      color: var(--white);
+    }
+
+    .tutorials-hero .section-sub {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Search & Filter */
+    .search-bar-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 6vw;
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 50;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      gap: 8px;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .search-input-wrap input {
+      background: none;
+      border: none;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      width: 100%;
+    }
+
+    .search-input-wrap input::placeholder {
+      color: var(--muted);
+    }
+
+    .filter-chips {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 0.4rem 0.9rem;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .chip.active,
+    .chip:hover {
+      background: var(--ink);
+      color: var(--white);
+      border-color: var(--ink);
+    }
+
+    /* Category Sections */
+    .cat-section {
+      padding: 3rem 6vw;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cat-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .cat-header h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .cat-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .cat-videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* ───────────── CONTACT PAGE ───────────── */
+    .contact-page {
+      min-height: calc(100vh - var(--nav-h));
+    }
+
+    .contact-hero {
+      background: var(--ink);
+      color: var(--white);
+      padding: 4rem 6vw;
+    }
+
+    .contact-hero .section-label {
+      color: var(--accent3);
+    }
+
+    .contact-hero .section-title {
+      color: var(--white);
+    }
+
+    .contact-hero .section-sub {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .contact-body {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      padding: 4rem 6vw;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-detail span {
+      font-size: 1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.8rem;
+    }
+
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .social-icon:hover {
+      background: var(--ink);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Form */
+    .contact-form {
+      background: var(--white);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent2);
+    }
+
+    .form-group textarea {
+      min-height: 130px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-success {
+      display: none;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+      color: #2e7d32;
+      margin-top: 1rem;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-success.show {
+      display: flex;
+    }
+
+    /* ───────────── FOOTER ───────────── */
+    footer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 3rem 6vw;
+      margin-top: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    footer h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    footer p,
+    footer a {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.8;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+
+    footer a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ───────────── RESPONSIVE ───────────── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-bottom: 3rem;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .about-section {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-body {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cat-videos {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3rem 5vw;
+      }
+
+      .search-bar-wrap {
+        padding: 0.8rem 5vw;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ───────────── ANIMATIONS ───────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stagger>* {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .stagger.animated>*:nth-child(1) {
+      animation: fadeUp 0.4s 0.05s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(2) {
+      animation: fadeUp 0.4s 0.1s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(3) {
+      animation: fadeUp 0.4s 0.15s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(4) {
+      animation: fadeUp 0.4s 0.2s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(5) {
+      animation: fadeUp 0.4s 0.25s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(6) {
+      animation: fadeUp 0.4s 0.3s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(7) {
+      animation: fadeUp 0.4s 0.35s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(8) {
+      animation: fadeUp 0.4s 0.4s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(9) {
+      animation: fadeUp 0.4s 0.45s ease forwards;
+    }
+
+    .stagger.animated>*:nth-child(10) {
+      animation: fadeUp 0.4s 0.5s ease forwards;
+    }
+
+    .hidden-cat {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav>
+    <div class="nav-logo" onclick="showPage('home')">
+      <span></span> Visual Graphic Skills Hub
+    </div>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+      <li><a onclick="showPage('tutorials')" id="nav-tutorials">Tutorials</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="showPage('tutorials')">Start Learning →</button>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a onclick="showPage('home');toggleMenu()">Home</a>
+    <a onclick="showPage('tutorials');toggleMenu()">Tutorials</a>
+    <a onclick="showPage('contact');toggleMenu()">Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════ PAGE: HOME ═══════════════════════════════════════ -->
+  <div class="page active" id="page-home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content fade-in">
+        <div class="hero-badge">Free • Curated • Structured Learning</div>
+        <h1>Master <em>Visual</em><br>Graphic Skills</h1>
+        <p class="hero-sub">A curated collection of the best YouTube tutorials to learn graphic design fundamentals —
+          organized for beginners, step by step.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('tutorials')">Start Learning →</button>
+          <button class="btn-secondary"
+            onclick="document.getElementById('skills-section').scrollIntoView({behavior:'smooth'})">Browse Skills
+            ↓</button>
+        </div>
+      </div>
+      <div class="hero-visual stagger" id="hero-visual">
+        <div class="hero-card" style="--skill-color:#e8470a">
+          <div class="hc-icon">🎨</div>
+          <h4>Color Theory</h4>
+          <p>Principles of harmony, contrast & mood</p>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">🔤</div>
+          <h4>Typography</h4>
+          <p>Fonts, hierarchy & readability</p>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">📐</div>
+          <h4>Composition</h4>
+          <p>Grids, balance & visual weight</p>
+        </div>
+        <div class="hero-card" style="background:var(--cream);color:var(--ink)">
+          <div class="hc-icon">👁️</div>
+          <h4>Visual Hierarchy</h4>
+          <p>Guide the viewer's eye</p>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">✨</div>
+          <h4>Visual Storytelling</h4>
+          <p>Communicate through design</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section">
+      <div>
+        <div class="section-label">About This Hub</div>
+        <h2 class="section-title">Learn Design<br>The Right Way</h2>
+        <p class="section-sub">This website organizes the best free YouTube tutorials into core visual graphic skill
+          categories so beginners can learn design in a structured, intentional way — no more random searching.</p>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="num">30+</div>
+            <p>Curated tutorials</p>
+          </div>
+          <div class="stat-box">
+            <div class="num">10</div>
+            <p>Core skill categories</p>
+          </div>
+          <div class="stat-box">
+            <div class="num">100%</div>
+            <p>Free to access</p>
+          </div>
+          <div class="stat-box">
+            <div class="num">∞</div>
+            <p>Learning potential</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-wrap stagger" id="about-stagger">
+        <div class="about-pill"><span class="dot" style="background:#e8470a"></span>Composition</div>
+        <div class="about-pill"><span class="dot" style="background:#1a56f0"></span>Color Theory</div>
+        <div class="about-pill"><span class="dot" style="background:#f0c31a"></span>Typography</div>
+        <div class="about-pill"><span class="dot" style="background:#0aae6f"></span>Visual Hierarchy</div>
+        <div class="about-pill"><span class="dot" style="background:#9b30ff"></span>Spacing & Layout</div>
+        <div class="about-pill"><span class="dot" style="background:#e84778"></span>Branding Sense</div>
+        <div class="about-pill"><span class="dot" style="background:#0ab3e8"></span>Imagery & Icons</div>
+        <div class="about-pill"><span class="dot" style="background:#e8470a"></span>Consistency</div>
+        <div class="about-pill"><span class="dot" style="background:#1a56f0"></span>Tech Execution</div>
+        <div class="about-pill"><span class="dot" style="background:#f0c31a"></span>Storytelling</div>
+      </div>
+    </section>
+
+    <!-- SKILLS OVERVIEW -->
+    <section class="skills-section" id="skills-section">
+      <div class="section-label">Core Components</div>
+      <h2 class="section-title">10 Skills Every Designer Needs</h2>
+      <p class="section-sub">Click any skill to explore curated tutorials for that category.</p>
+      <div class="skills-grid stagger" id="skills-grid">
+
+        <div class="skill-card" style="--skill-color:#e8470a" onclick="showTutorials('Composition')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">📐</div>
+          <h3>Composition</h3>
+          <p>Grid systems, visual balance, and layout fundamentals.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#1a56f0" onclick="showTutorials('Color Theory')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">🎨</div>
+          <h3>Color Theory</h3>
+          <p>Color wheels, palettes, harmony, and contrast.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#f0c31a" onclick="showTutorials('Typography')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">🔤</div>
+          <h3>Typography</h3>
+          <p>Fonts, type pairings, readability, and hierarchy.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#0aae6f" onclick="showTutorials('Visual Hierarchy')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">👁️</div>
+          <h3>Visual Hierarchy</h3>
+          <p>Guide attention, structure content, prioritize elements.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#9b30ff" onclick="showTutorials('Spacing & Layout')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">↔️</div>
+          <h3>Spacing & Layout</h3>
+          <p>White space, padding, margins, and alignment.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#e84778" onclick="showTutorials('Consistency & Style')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">🔁</div>
+          <h3>Consistency & Style</h3>
+          <p>Style guides, design systems, and visual cohesion.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#0ab3e8" onclick="showTutorials('Imagery & Iconography')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">🖼️</div>
+          <h3>Imagery & Iconography</h3>
+          <p>Using images, icons, and illustration effectively.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#ff7e0a" onclick="showTutorials('Branding Sense')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">💎</div>
+          <h3>Branding Sense</h3>
+          <p>Brand identity, logos, and visual personality.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#3ab4f2" onclick="showTutorials('Technical Execution')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">⚙️</div>
+          <h3>Technical Execution</h3>
+          <p>Tools, file formats, exports, and production skills.</p>
+        </div>
+
+        <div class="skill-card" style="--skill-color:#e8d60a" onclick="showTutorials('Visual Storytelling')">
+          <span class="sc-arrow">↗</span>
+          <div class="sc-icon">📖</div>
+          <h3>Visual Storytelling</h3>
+          <p>Narrative, emotion, flow, and communicating ideas visually.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURED TUTORIALS -->
+    <section class="featured-section">
+      <div class="section-label">Featured Tutorials</div>
+      <h2 class="section-title">Start Watching Now</h2>
+      <p class="section-sub">Hand-picked videos to get you started across the most essential design skills.</p>
+      <div class="featured-grid stagger" id="featured-grid">
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/a5KYlHNKQB8" title="Graphic Design Basics" allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Composition</span>
+            <h4>Graphic Design Basics: Composition</h4>
+            <p>Learn the core rules of composition every designer must know.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/AvgCkHrcj8w" title="Color Theory for Designers" allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Color Theory</span>
+            <h4>Beginning Graphic Design: Color</h4>
+            <p>A beginner-friendly introduction to color theory and how to apply it.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/QrNi9FmdlxY" title="Typography Tutorial" allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Typography</span>
+            <h4>Beginning Graphic Design: Typography</h4>
+            <p>Understand fonts, type families, and how to use text effectively.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/ZK86XQ1iFVs" title="Visual Hierarchy Tutorial" allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Visual Hierarchy</span>
+            <h4>Graphic Design: Visual Hierarchy Explained</h4>
+            <p>How to guide the viewer's eye through smart design decisions.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/yNDgFK2Jj1E" title="Layout and Grids" allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Spacing & Layout</span>
+            <h4>Layout and Grids in Graphic Design</h4>
+            <p>Master spacing, grids, and alignment for clean, professional layouts.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/l-S2Y3SF3mM" title="Branding Design Basics" allowfullscreen
+              loading="lazy"></iframe>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Branding Sense</span>
+            <h4>Intro to Brand Identity Design</h4>
+            <p>Learn the fundamentals of creating consistent, memorable brand visuals.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="featured-cta">
+        <button class="btn-primary" onclick="showPage('tutorials')">Explore All Tutorials →</button>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ═══════════════════════════════════════ PAGE: TUTORIALS ═══════════════════════════════════════ -->
+  <div class="page" id="page-tutorials">
+
+    <div class="tutorials-hero">
+      <div class="section-label">Learning Library</div>
+      <h1 class="section-title">Design Tutorials</h1>
+      <p class="section-sub">Browse 30+ curated YouTube tutorials organized across 10 core visual graphic skill
+        categories.</p>
+    </div>
+
+    <!-- Search + Filter -->
+    <div class="search-bar-wrap">
+      <div class="search-input-wrap">
+        <span>🔍</span>
+        <input type="text" id="search-input" placeholder="Search tutorials..." oninput="filterTutorials()">
+      </div>
+      <div class="filter-chips" id="filter-chips">
+        <div class="chip active" onclick="setFilter('All', this)">All</div>
+        <div class="chip" onclick="setFilter('Composition', this)">Composition</div>
+        <div class="chip" onclick="setFilter('Color Theory', this)">Color Theory</div>
+        <div class="chip" onclick="setFilter('Typography', this)">Typography</div>
+        <div class="chip" onclick="setFilter('Visual Hierarchy', this)">Visual Hierarchy</div>
+        <div class="chip" onclick="setFilter('Spacing & Layout', this)">Spacing & Layout</div>
+        <div class="chip" onclick="setFilter('Consistency & Style', this)">Consistency</div>
+        <div class="chip" onclick="setFilter('Imagery & Iconography', this)">Imagery</div>
+        <div class="chip" onclick="setFilter('Branding Sense', this)">Branding</div>
+        <div class="chip" onclick="setFilter('Technical Execution', this)">Technical</div>
+        <div class="chip" onclick="setFilter('Visual Storytelling', this)">Storytelling</div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div id="tutorials-body">
+
+      <!-- 1. COMPOSITION -->
+      <div class="cat-section" data-cat="Composition">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#ffeae3;color:#e8470a;">📐</div>
+          <div>
+            <h2>Composition</h2>
+            <p>Master grid systems, visual balance, and layout structure.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Composition">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/iryl0HRLlO4?si=-g9aoglWpnFAbEmK" 
+              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Composition</span>
+              <h4>Pro Tips for Perfect Composition | Make Every Design Stand Out</h4>
+              <p>Core composition rules and how to apply them to your designs.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/r6LPNRVhGKA?si=n-u1YWE5CewlcqmH" title="YouTube video player" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Composition</span>
+              <h4>
+Rules of Composition</h4>
+              <p>How grids create structure and consistency in graphic design.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/yjtnQ1brgbA?si=ZkLu02j9kf5W5DMo" title="YouTube video player" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Composition</span>
+              <h4>Composition Tips for Beginners</h4>
+              <p>Practical composition tips to instantly improve your layout skills.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. COLOR THEORY -->
+      <div class="cat-section" data-cat="Color Theory">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#e3eaff;color:#1a56f0;">🎨</div>
+          <div>
+            <h2>Color Theory</h2>
+            <p>Learn color harmony, contrast, and emotion in design.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Color-Theory">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/7iY4QFqTlpE?si=SAGr-x_Q5VzzsLHG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Color Theory</span>
+              <h4>
+What's Color Theory | Graphic Design Basic</h4>
+              <p>GCFGlobal's beginner introduction to color in graphic design.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/pAK0cvVQr_4?si=ZxhuP9kzIwQm2W3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Color Theory</span>
+              <h4>Color Theory for Designers</h4>
+              <p>Deeper dive into hue, saturation, value and creating beautiful palettes.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/HonJiqr7eqY?si=3AYGoQHRgfygeYb8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Color Theory</span>
+              <h4>
+Graphic Design Principles Master Class!</h4>
+              <p>Practical guide to building harmonious color palettes for any project.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. TYPOGRAPHY -->
+      <div class="cat-section" data-cat="Typography">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#fffbe3;color:#c9a000;">🔤</div>
+          <div>
+            <h2>Typography</h2>
+            <p>Fonts, type hierarchies, pairing, and readability.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Typography">
+          <div class="video-card">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/QrNi9FmdlxY" allowfullscreen
+                loading="lazy"></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Typography</span>
+              <h4>Beginning Graphic Design: Typography</h4>
+              <p>Learn font families, classifications, and typographic fundamentals.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/AXpxZMRM1EY?si=lu3UpLB343g1StIP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Typography</span>
+              <h4>
+
+PH
+
+Skip navigation
+graphic design visual typography
+
+
+
+
+Create
+
+9+
+
+Avatar image
+The ULTIMATE Guide To Typography For Beginner</h4>
+              <p>Understand kerning, leading, tracking and how to use type well.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/agbh1wbfJt8" allowfullscreen
+                loading="lazy"></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Typography</span>
+              <h4>How to Choose & Pair Fonts</h4>
+              <p>Simple rules for combining fonts that look great together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. VISUAL HIERARCHY -->
+      <div class="cat-section" data-cat="Visual Hierarchy">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#e3fff3;color:#0aae6f;">👁️</div>
+          <div>
+            <h2>Visual Hierarchy</h2>
+            <p>Direct attention and communicate priority through design.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Visual-Hierarchy">
+          <div class="video-card">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/ZK86XQ1iFVs" allowfullscreen
+                loading="lazy"></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Visual Hierarchy</span>
+              <h4>Graphic Design: Visual Hierarchy Explained</h4>
+              <p>How to organize content so viewers see what matters most.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/qZWDJqY27bw" allowfullscreen
+                loading="lazy"></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Visual Hierarchy</span>
+              <h4>Visual Hierarchy in Web & UI Design</h4>
+              <p>Applying hierarchy principles to digital design projects.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/4QNEDhrsRLo?si=-iNS4fnCzIQ7e0PU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Visual Hierarchy</span>
+              <h4>The 6 Principles of Visual Hierarchy</h4>
+              <p>A concise breakdown of the key principles that drive visual hierarchy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. SPACING & LAYOUT -->
+      <div class="cat-section" data-cat="Spacing & Layout">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#f3e3ff;color:#9b30ff;">↔️</div>
+          <div>
+            <h2>Spacing & Layout</h2>
+            <p>White space, alignment, margins, and the power of breathing room.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Spacing">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/9ElrcTtAxzA?si=psEI30E29fZSrHdG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Spacing & Layout</span>
+              <h4>The Secret Science of Perfect Spacing</h4>
+              <p>Learn why negative space is one of the most powerful design tools.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/cf95Z7Ngg8k?si=saRhqgYgvgU5hfJL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Spacing & Layout</span>
+              <h4>Master Spacing in UI Design</h4>
+              <p>How to align elements for clean, professional-looking layouts.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/yUvGHNzqG7M?si=nfsPAbATPwpncDMj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Spacing & Layout</span>
+              <h4>The Graphic Design Course To MASTER Layout Design!</h4>
+              <p>Grid-based design and how to use layout to communicate hierarchy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. CONSISTENCY & STYLE -->
+      <div class="cat-section" data-cat="Consistency & Style">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#ffe3ec;color:#e84778;">🔁</div>
+          <div>
+            <h2>Consistency & Style</h2>
+            <p>Build design systems and maintain visual coherence across projects.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Consistency">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/Qn3gY41E8bo?si=i5yVPBwNnklPlasU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Consistency & Style</span>
+              <h4>The Power of Consistency in Graphics Design</h4>
+              <p>What design systems are and why they matter for consistent design.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/mNq5HqjrToM?si=sdWIOL2USgtDu2W6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Consistency & Style</span>
+              <h4>Master Midjourney Styles: Prompting, SREF Codes, Moodboards & Style Consistency</h4>
+              <p>Finding and cultivating a consistent visual voice in your work.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/cpM9pCb-x-Q?si=pKv6anV1j2odxDY1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Consistency & Style</span>
+              <h4>My Secret to a Consistent Editing Style</h4>
+              <p>How to document your visual style to maintain consistency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. IMAGERY & ICONOGRAPHY -->
+      <div class="cat-section" data-cat="Imagery & Iconography">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#e3f7ff;color:#0ab3e8;">🖼️</div>
+          <div>
+            <h2>Imagery & Iconography</h2>
+            <p>Using photos, illustrations, and icons to enhance visual communication.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Imagery">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/MELKuexR3sQ?si=3IeFgicAe-s7_Lhx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Imagery & Iconography</span>
+              <h4>Beginning Graphic Design: Images</h4>
+              <p>Tips for selecting, cropping, and placing images in your designs.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/CWC5SDKeawU?si=qkcDvMD0bihSxNKi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Master Imagery in Graphic Design: Tips & Tricks for Stunning Visuals</span>
+              <h4>Icon Design for Beginners</h4>
+              <p>How to design clean, scalable icons from scratch.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/ffUxT6pVI5Q?si=n3LoJV65B4H3dTVS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div>
+            <div class="video-info">
+              <span class="video-tag">Imagery & Iconography</span>
+              <h4>Iconography for Designers</h4>
+              <p>When and how to incorporate illustration into design work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. BRANDING SENSE -->
+      <div class="cat-section" data-cat="Branding Sense">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#fff0e3;color:#ff7e0a;">💎</div>
+          <div>
+            <h2>Branding Sense</h2>
+            <p>Brand identity, logo design, and building visual personality.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Branding">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/l-S2Y3SF3mM?si=6kXaOOnIg4IzgQfc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Branding Sense</span>
+              <h4>Beginning Graphic Design: Branding & Identity</h4>
+              <p>The basics of visual branding and what makes a brand recognizable.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/n_-ygXZUq3U?si=MytGmG3JEuhLm3I5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Branding Sense</span>
+              <h4>Branding and Identity Design</h4>
+              <p>Principles and process for creating effective logo designs.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/y_2P5o_msuo?si=eNYQBNCo8CCUUo1h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Branding Sense</span>
+              <h4>How To ACTUALLY Design a Brand Identity</h4>
+              <p>Core elements of brand identity and how they work together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. TECHNICAL EXECUTION -->
+      <div class="cat-section" data-cat="Technical Execution">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#e3f4ff;color:#3ab4f2;">⚙️</div>
+          <div>
+            <h2>Technical Execution</h2>
+            <p>Tools, software workflows, file formats, and production skills.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Technical">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/52SNdnc8Ag4?si=UBBjZvNCzVlmYDox" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Technical Execution</span>
+              <h4>Technical Design: What is it??</h4>
+              <p>Get started with one of the most popular graphic design tools.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/m7R-g24rbXA?si=9R6a5ZyJnTKRUq_Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Technical Execution</span>
+              <h4>Design a 3D Animated Banner in Figma Using Spline | Step-by-Step Tutorial</h4>
+              <p>The essential tools and techniques in Illustrator for graphic designers.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/L22lDu3QX2c?si=iCPcK8_c9geLRGIM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Technical Execution</span>
+              <h4>The CORRECT (and lazy) way to prototype | Figma Tutorial</h4>
+              <p>When to use PNG, SVG, PDF, JPEG and other formats in your workflow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. VISUAL STORYTELLING -->
+      <div class="cat-section" data-cat="Visual Storytelling">
+        <div class="cat-header">
+          <div class="cat-icon-box" style="background:#fffce3;color:#b8960a;">📖</div>
+          <div>
+            <h2>Visual Storytelling</h2>
+            <p>Communicate narratives, emotion, and meaning through design.</p>
+          </div>
+        </div>
+        <div class="cat-videos stagger" id="cat-Storytelling">
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/9YcSdkUzok8?si=Z5wwxDqfAug4DJg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Visual Storytelling</span>
+              <h4>Storytelling and Visual Design</h4>
+              <p>How to use design to create narrative flow and emotional impact.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/iWQQgZh9EyE?si=WMKhVmmE0cFyeDZW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Visual Storytelling</span>
+              <h4>Visual Storytelling 101</h4>
+              <p>Turn complex information into compelling visual stories.</p>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/_sNFhhNoZYQ?si=88GDJEYGLDBeH-Ms" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-info">
+              <span class="video-tag">Visual Storytelling</span>
+              <h4>The Surprising Truth About Storytelling in Design Nobody Tells You</h4>
+              <p>The connection between design decisions and the stories they tell.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tutorials-body -->
+  </div><!-- /page-tutorials -->
+
+
+  <!-- ═══════════════════════════════════════ PAGE: CONTACT ═══════════════════════════════════════ -->
+  <div class="page" id="page-contact">
+    <div class="contact-page">
+      <div class="contact-hero">
+        <div class="section-label">Get In Touch</div>
+        <h1 class="section-title">Contact Us</h1>
+        <p class="section-sub">Have a tutorial recommendation or suggestion? Send us a message — we'd love to hear from
+          you.</p>
+      </div>
+
+      <div class="contact-body">
+        <div class="contact-info">
+          <h3>Let's Connect</h3>
+          <p>We're always looking for great tutorials to add to the hub. If you've found something helpful, share it! We
+            review every message and feature the best recommendations.</p>
+          <div class="contact-detail"><span>📧</span> hello@vgskillshub.com</div>
+          <div class="contact-detail"><span>📍</span> Manila, Philippines</div>
+          <div class="contact-detail"><span>💬</span> Response within 48 hours</div>
+          <div class="social-icons">
+            <a class="social-icon" title="YouTube">▶</a>
+            <a class="social-icon" title="Instagram">◉</a>
+            <a class="social-icon" title="X / Twitter">✕</a>
+            <a class="social-icon" title="LinkedIn">in</a>
+            <a class="social-icon" title="Pinterest">P</a>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="e.g. Maria Santos">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="you@example.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Tutorial recommendation, feedback, etc.">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message"
+              placeholder="Tell us about a great tutorial you've found, or share any feedback about the hub..."></textarea>
+          </div>
+          <button class="btn-primary" onclick="submitForm()" style="width:100%;justify-content:center;">Send Message
+            →</button>
+          <div class="form-success" id="form-success">
+            ✅ &nbsp; Thank you! Your message has been sent. We'll get back to you soon.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /page-contact -->
+
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div>
+      <h4>Visual Graphic Skills Hub</h4>
+      <p>A curated learning platform for graphic design beginners. Free tutorials, organized by skill.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('tutorials')">All Tutorials</a>
+      <a onclick="showPage('contact')">Contact</a>
+      <a onclick="showPage('tutorials');setFilterByName('Composition')">Composition</a>
+      <a onclick="showPage('tutorials');setFilterByName('Color Theory')">Color Theory</a>
+    </div>
+    <div>
+      <h4>Skill Categories</h4>
+      <a onclick="showPage('tutorials');setFilterByName('Typography')">Typography</a>
+      <a onclick="showPage('tutorials');setFilterByName('Visual Hierarchy')">Visual Hierarchy</a>
+      <a onclick="showPage('tutorials');setFilterByName('Branding Sense')">Branding Sense</a>
+      <a onclick="showPage('tutorials');setFilterByName('Visual Storytelling')">Visual Storytelling</a>
+      <a onclick="showPage('tutorials');setFilterByName('Technical Execution')">Technical Execution</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2026 Visual Graphic Skills Hub. All rights reserved.</span>
+    <span>Built for designers, by designers.</span>
+  </div>
+
+
+  <script>
+    // ─── Page routing ───
+    let currentPage = 'home';
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      const el = document.getElementById('nav-' + id);
+      if (el) el.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      currentPage = id;
+      // reset filters when visiting tutorials fresh
+      if (id === 'tutorials') {
+        setTimeout(() => triggerStagger(), 100);
+      }
+      if (id === 'home') {
+        setTimeout(() => triggerHomeAnimations(), 100);
+      }
+    }
+
+    // ─── Mobile menu ───
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
+    // ─── Tutorials filter ───
+    let activeFilter = 'All';
+    function setFilter(cat, el) {
+      activeFilter = cat;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      filterTutorials();
+    }
+    function setFilterByName(cat) {
+      activeFilter = cat;
+      document.querySelectorAll('.chip').forEach(c => {
+        c.classList.remove('active');
+        if (c.textContent.trim() === cat || c.getAttribute('onclick')?.includes(`'${cat}'`)) {
+          c.classList.add('active');
+        }
+      });
+      filterTutorials();
+      // scroll to section
+      setTimeout(() => {
+        const sec = document.querySelector(`[data-cat="${cat}"]`);
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+
+    function filterTutorials() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      document.querySelectorAll('.cat-section').forEach(sec => {
+        const cat = sec.getAttribute('data-cat');
+        const catMatch = activeFilter === 'All' || cat === activeFilter;
+        // check video cards
+        let visibleCount = 0;
+        sec.querySelectorAll('.video-card').forEach(card => {
+          const text = card.textContent.toLowerCase();
+          const textMatch = !query || text.includes(query);
+          card.style.display = textMatch ? '' : 'none';
+          if (textMatch) visibleCount++;
+        });
+        sec.classList.toggle('hidden-cat', !catMatch || (query && visibleCount === 0));
+      });
+    }
+
+    // ─── Skill card → tutorials page ───
+    function showTutorials(cat) {
+      showPage('tutorials');
+      setTimeout(() => setFilterByName(cat), 200);
+    }
+
+    // ─── Contact form ───
+    function submitForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if (!name || !email || !msg) { alert('Please fill in your name, email, and message.'); return; }
+      document.getElementById('form-success').classList.add('show');
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('subject').value = '';
+      document.getElementById('message').value = '';
+      setTimeout(() => document.getElementById('form-success').classList.remove('show'), 5000);
+    }
+
+    // ─── Intersection Observer for stagger animations ───
+    function triggerStagger() {
+      document.querySelectorAll('.stagger').forEach(el => {
+        el.classList.remove('animated');
+        void el.offsetWidth; // reflow
+        el.classList.add('animated');
+      });
+    }
+    function triggerHomeAnimations() {
+      document.getElementById('hero-visual')?.classList.add('animated');
+      document.getElementById('about-stagger')?.classList.add('animated');
+      document.getElementById('skills-grid')?.classList.add('animated');
+      document.getElementById('featured-grid')?.classList.add('animated');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.stagger').forEach(el => observer.observe(el));
+
+    // init home animations
+    setTimeout(triggerHomeAnimations, 200);
+  </script>
+
+</body>
+
+</html>
